@@ -1,0 +1,34 @@
+<style>
+  body{
+  	background-color:#A0CAEE;	
+  }
+</style>
+<% if current_user %>
+  <h2>You are already logged in</h2>
+  <%= link_to 'Click here to go back to courses', courses_path %>
+<% else %>
+<div class = "header">
+  <div class = "header-text">Login</div>
+</div>
+
+<% if flash[:error] %>
+    <div class="alert alert-danger"><%= flash[:error] %></div>
+<% end %>
+<%= form_tag '/login' do %>
+    <div class = "description">Email</div>
+    <div class = "inputbox">
+      <%= text_field_tag( :email,"", class: "form-control")%> 
+    </div>
+    <div class = "description">Password</div>
+    <div class ="inputbox">
+      <%= password_field_tag :password, "", class: "form-control" %>
+    </div>
+    <div class = "description">
+      <%= submit_tag "Submit", class: "btn btn-primary" %>
+    </div>
+    <div class = "description">
+      <%= link_to 'Don\'t have an account? Sign up here.', new_user_path %>
+    </div>
+<% end %>
+<% end %>
+

@@ -1,0 +1,8 @@
+<%= link_to @course.title %> <br>
+Sections:
+<ul id="sections">
+	<% @course.sections.each do |section| %>
+		<%= render partial: 'courses/section_link', locals: {section: section} %>
+	<% end %>
+</ul>
+

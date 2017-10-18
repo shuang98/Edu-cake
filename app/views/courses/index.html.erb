@@ -1,0 +1,60 @@
+<style>
+    body {
+        background-color: #CFE6FA;
+        font-weight: 200;
+    }
+    .section-container {
+        font-size: 24px;
+        min-height: 200px;
+        border: 20px yellow;
+        position: relative;
+        background-color: #A0CBEE;
+        margin: 50px auto;
+        width: 600px;
+        padding: 20px;
+        border: 2px solid black;
+        border-style: solid;
+    }
+    .page-title {
+        top: 30px;
+    }
+    .main-container {
+        position: relative;
+        background-color: #CFE6FA;
+    }
+    .section-title {
+        position: relative;
+    }
+    .page-title {
+        position: relative;
+    }
+</style>
+
+<div class = "main-container">
+    <div class = "header-text page-title">Courses</div>
+    <div class = "section-container">
+        <div class = "section-title">
+            Courses you are currently taking:
+        </div>
+        <div class = "subtext">
+            <% Course.all.each do |course| %> 
+                <% if current_user.following?(course) %>
+                    <%= link_to course.title, preview_courses_url(course.id) %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+    <div class = "section-container">
+        <div class = "section-title">All other courses:</div>
+        <div class = "subtext">
+            <% Course.all.each do |course| %> 
+                <% if (course.user_id != current_user.id) && !current_user.following?(course) %>
+                    <%= link_to course.title, preview_courses_url(course.id) %><br>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+    <div class = "description">
+        <%= link_to "Create Course", new_course_path, class: "btn btn-primary"%>
+    </div>
+</div>

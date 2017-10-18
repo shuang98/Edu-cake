@@ -1,0 +1,73 @@
+<style>
+    body {
+        background-color: #CFE6FA;
+        font-weight: 200;
+    }
+    .section-container {
+        font-size: 24px;
+        min-height: 200px;
+        border: 20px yellow;
+        position: relative;
+        background-color: #A0CBEE;
+        margin: 50px auto;
+        width: 600px;
+        padding: 20px;
+        border: 2px solid black;
+        border-style: solid;
+    }
+    .page-title {
+        top: 30px;
+    }
+    .main-container {
+        position: relative;
+        background-color: #CFE6FA;
+    }
+    .section-title {
+        position: relative;
+    }
+    .page-title {
+        position: relative;
+    }
+</style>
+
+<div class = "main-container">
+    <div class = "header-text page-title">
+        <%= @user.username %>
+    </div>
+    <br><br>
+    <% if current_user.username == @user.username %>
+        <div id = "edit-link" class = "link"><%= link_to 'Edit Profile', edit_user_path %></div>
+    <% end %>
+    <% if current_user.username != @user.username %>
+        <% if current_user.following?(@user) %>
+            <div id = "unfollow-link" class = "link"><%= link_to 'Unfollow', unfollow_users_path(@user.id), method: :post %></div>
+        <% else %>
+            <div id = "follow-link" class = "link"><%= link_to 'Follow', follow_users_path(@user.id), method: :post %></div>
+        <% end %>
+    <% end %>
+    <div class = "section-container">
+        <div class = "section-title">
+            Courses created:
+        </div>
+        <div class = "subtext">
+            <% @user.courses.each do |course|%>
+              <%= link_to course.title, course_path(course.id) %>
+              <br>
+            <% end %>
+        </div>
+    </div>
+    <div class = "section-container">
+        <div class = "section-title">
+            Courses currently taking:
+        </div>
+        <div class = "subtext">
+            <% Course.all do |course|%>
+                <% if current_user.following?(course) %>
+                    <%= link_to course.title, course_path(course.id) %>
+                    <br>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
+

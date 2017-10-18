@@ -1,0 +1,9 @@
+<div id="body-field-<%= section.bodies[b_id].id %>" >
+	<script>
+	        CKEDITOR.replace(<%= "body" + b_id.to_s + section.id.to_s %>)
+	</script>
+	<%= f.cktext_area :body, id: "body" + b_id.to_s + section.id.to_s%>
+	<br>
+	<%= link_to "Delete", destroybody_course_sections_path(@course.id, body_id: section.bodies[b_id]), method: :delete, remote: true, class: "btn btn-danger delete-body", id: b_id.to_s + section.id.to_s%>
+	<br>
+</div>

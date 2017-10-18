@@ -1,0 +1,13 @@
+<h1>Course Preview</h1>
+<head>
+<h2><%= @course.title %></h2>
+<h3>by <%= link_to @author.username, user_path(@author.id) %></h3>
+</head>
+
+<body>
+    <%= @course.description %>
+</body>
+<br>
+
+<%= link_to 'Click Here to Begin Course', course_path %>
+

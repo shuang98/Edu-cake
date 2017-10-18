@@ -1,0 +1,7 @@
+<div id="body-field-<%= body.id %>" >
+	<%= body.body.html_safe %>
+	<br>
+	<%= link_to "Delete", destroybody_course_sections_path(@course.id, body_id: body.id), method: :delete, remote: true, class: "btn btn-danger delete-body"%>
+	<br>
+</div>
+<br>

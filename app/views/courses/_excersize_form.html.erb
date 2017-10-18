@@ -1,0 +1,10 @@
+<div class="excersize-form" id="<%= section.id %>">
+	<%= form_tag course_section_excersizes_path(@course.id, section.id), remote: true do %>
+		Question:
+		<%= text_area_tag :question, "", class: "form-control" %>
+		<br>
+		Answer:
+		<%= text_area_tag :answer, "", class: "form-control" %> <br>
+		<%= submit_tag "Submit", class: "btn btn-primary" %>
+	<% end %>
+</div>	

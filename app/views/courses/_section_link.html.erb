@@ -1,0 +1,6 @@
+<li id="<%= section.id %>">
+	<%= link_to section.title, "#", id: section.id, class: "section-link"%>
+	<%= link_to "", id: section.id, class: "delete-section" do %>
+		<i class="glyphicon glyphicon-trash" style="color: red"></i>
+	<% end %>
+</li>

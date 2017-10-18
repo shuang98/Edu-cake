@@ -1,0 +1,5 @@
+<% @sections.each do |section| %>
+	<div class="section-form" id="section-form-<%= section.id %>">
+		<%= render partial: 'courses/section_form', locals: {section: section} %>
+	</div>
+<% end %>

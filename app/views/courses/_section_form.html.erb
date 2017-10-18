@@ -1,0 +1,43 @@
+
+<h2><%= section.title %></h2>
+<%= form_for section, url: course_section_path(@course.id, section.id), method: :put, remote: true do |f|%>
+	<div class="bodies">
+	<% b_id = 0 %>
+
+		<%= f.fields_for :bodies do |body| %>
+			<% if !section.bodies[b_id].is_video %>
+				<%= render partial: 'courses/body_fields', locals: {f: body, section: section, b_id: b_id}  %>
+				<br>
+			<% else %>
+				<%= render partial: 'courses/video', locals: {body: section.bodies[b_id], section: section, b_id: b_id} %>
+			<% end %>
+			<% b_id = b_id + 1 %>
+		<% end %>
+	</div>
+
+	
+	
+	<br>
+	<%= submit_tag :Save, class: "btn btn-primary"%>
+<% end %>
+<br>
+<%= link_to "Add Text", "", class: "btn btn-default add-body", id: section.id %>
+<%= link_to "Add Video", "", class: "btn btn-default add-video", id: section.id %>
+<div class="new-video-form" id="new-video-form-<%= section.id %>">
+	<br><br>
+	<%= form_tag buildvideo_course_sections_path(@course.id, section_id: section.id), method: :get, remote: true do %>
+		<%= text_field_tag :youtube, "" , placeholder: "Youtube URL:", id: "url-field"%> 
+		<%= submit_tag "Submit", class: "btn btn-primary" %>
+		<br>
+	<% end %>
+</div>
+<br>
+<h2>Add Problem Set:</h2>
+
+<div id="excersizes">
+<% section.excersizes.each do |e| %>
+	<%= render partial: "courses/excersize", locals: {excersize: e} %>
+<% end %>
+<%= render partial: "courses/excersize_form", locals: {section: section} %>
+</div>
+

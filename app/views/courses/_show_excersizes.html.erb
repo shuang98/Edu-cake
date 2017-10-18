@@ -1,0 +1,15 @@
+<% if section.excersizes.length > 0 %>
+	<h3>Excersizes:</h3>
+<% end %>
+
+<% section.excersizes.each do |excersize| %>
+	<div class="well">
+		<div id="excersize-<%= excersize.id %>">
+			<strong> <%= excersize.question %> </strong><br>
+			<div class="answer" id="answer-<%= excersize.id %>">
+				<%= excersize.answer %>
+			</div>
+			<%= link_to "Show Answer", "", class: "show-answer", id: excersize.id %>
+		</div>
+	</div>
+<% end %>

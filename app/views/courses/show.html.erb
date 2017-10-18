@@ -1,0 +1,21 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+			<%= render 'show_sidebar' %>
+			<% if current_user.id == @course.user.id %>
+				<%= link_to "Edit", edit_course_path(@course.id), class: "btn btn-primary" %>
+			<% end %>
+		</div>
+		<div class="col-sm-8">
+			<h1><%= @course.title %></h1>
+			<div id="section-body">
+				<%= render @sections %>
+				<div id="description">
+					<p><%= @course.description %></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br><br>

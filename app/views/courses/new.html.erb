@@ -1,0 +1,61 @@
+<style>
+    body {
+        background-color: #CFE6FA;
+        font-weight: 200;
+    }
+    .section-container {
+        font-size: 24px;
+        min-height: 200px;
+        border: 20px yellow;
+        position: relative;
+        background-color: #A0CBEE;
+        margin: 50px auto;
+        width: 600px;
+        padding: 20px;
+        border: 2px solid black;
+        border-style: solid;
+    }
+    .page-title {
+        top: 30px;
+    }
+    .main-container {
+        position: relative;
+        background-color: #CFE6FA;
+    }
+    .section-title {
+        position: relative;
+    }
+    .page-title {
+        position: relative;
+    }
+</style>
+
+<div class="container main-container">
+	<div class = "header-text page-title">Create Course</div>
+	<br>
+	<% if @course.errors.any? %>
+	<br>
+	<br>
+		<div class="alert alert-danger">
+			<ul>
+				<% @course.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<%= form_for @course do |f| %>
+	  	<div class = "description">Title</div>
+  	    <div class = "inputbox">
+  		    <%= f.text_field :title, class: "form-control" %>
+  	    </div>
+  	  	<div class = "description">Description</div>
+  	    <div class = "inputbox">
+  		    <%= f.text_area :description, class: "form-control", rows: "6" %>
+  	    </div>
+        <div class = "description">
+  		    <%= f.submit "Create" , class: "btn btn-primary"%>
+    	</div>
+	<% end %>
+</div>

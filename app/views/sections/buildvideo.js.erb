@@ -1,0 +1,1 @@
+$('#section-form-' + <%= @section.id %>).html('<%= j render partial: "courses/section_form", locals: {section: @section, body: @body} %>');

@@ -1,0 +1,20 @@
+<%= link_to @course.title %> <br>
+Sections:
+<ul id="sections">
+	<% @course.sections.each do |section| %>
+		<%= render partial: 'courses/section_link', locals: {section: section} %>
+	<% end %>
+</ul>
+<div id="new-section-form">
+  <%= form_tag course_sections_path(@course.id), remote: true do%>
+  	<%= text_field_tag :title, "", id:"section-title-field"%>
+  	<%= button_tag(type: 'submit', class: "btn btn-primary", id: "create-section") do %>
+			<span class="glyphicon glyphicon-plus"></span> 
+		<% end %>
+  <% end %>
+</div>
+<br>
+<div class="course-id" id="<%= @course.id %>"></div>
+<%= link_to "", id: "edit-section", class: "btn btn-primary", style: "float: right" do %>
+	<i class="glyphicon glyphicon-pencil"></i>
+<% end %>

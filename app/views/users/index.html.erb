@@ -1,0 +1,52 @@
+<style>
+    body {
+        background-color: #CFE6FA;
+        font-weight: 200;
+    }
+    .section-container {
+        font-size: 24px;
+        min-height: 200px;
+        border: 20px yellow;
+        position: relative;
+        background-color: #A0CBEE;
+        margin: 50px auto;
+        width: 600px;
+        padding: 20px;
+        border: 2px solid black;
+        border-style: solid;
+    }
+    .page-title {
+        top: 30px;
+    }
+    .main-container {
+        position: relative;
+        background-color: #CFE6FA;
+    }
+    .section-title {
+        position: relative;
+    }
+    .page-title {
+        position: relative;
+    }
+</style>
+
+<div class = "main-container">
+    <div class = "header-text page-title">User Search</div>
+    <%= form_tag usersearch_path, :method => 'get', :id => 'user-search' do %>
+    <br><br><br>
+    <div class = "inputbox">
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search", :name => nil %>
+    </div>
+    <% end %>
+    <div class = "section-container">
+        <div class = "section-title">
+            Users you're following:
+        </div>
+        <div class = "subtext">
+            <% current_user.following_by_type('User').each do |followed| %>
+                <%= link_to followed.username, user_path(followed.id) %>
+            <% end %>
+        </div>
+    </div>
+</div>
