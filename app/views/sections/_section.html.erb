@@ -1,7 +1,9 @@
 <div class="section-form" id="section-form-<%= section.id %>">
 	<h2><%= section.title %></h2>
 	<% section.bodies.each do |body| %>
-		<%= body.body.html_safe %>
+    <% if body.body %>
+      <%= body.body.html_safe %>
+    <% end %>
 		<br><br>
 	<% end %>
 	<%= render partial: "courses/show_exercises", locals: {section: section} %>
