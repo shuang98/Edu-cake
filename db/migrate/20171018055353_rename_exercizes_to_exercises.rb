@@ -1,5 +1,5 @@
 class RenameExercizesToExercises < ActiveRecord::Migration[5.0]
   def change
-    rename_table :excersizes, :exercises
+    rename_table :exercises, :exercises
   end
 end

@@ -1,5 +1,5 @@
-<div class="excersize-form" id="<%= section.id %>">
-	<%= form_tag course_section_excersizes_path(@course.id, section.id), remote: true do %>
+<div class="exercise-form" id="<%= section.id %>">
+	<%= form_tag course_section_exercises_path(@course.id, section.id), remote: true do %>
 		Question:
 		<%= text_area_tag :question, "", class: "form-control" %>
 		<br>

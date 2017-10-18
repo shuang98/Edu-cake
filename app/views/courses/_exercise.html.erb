@@ -1,0 +1,6 @@
+<div class="well" id="exercise-<%= exercise.id %>">
+	<strong><%= exercise.question %></strong> <br>
+	<%= exercise.answer %>
+	<br>
+	<%= link_to "Delete", course_section_exercise_path(exercise.section.course.id, exercise.section.id, exercise.id), method: :delete, remote: true %>
+</div>

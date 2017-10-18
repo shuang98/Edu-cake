@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       post ':id/endorse' => 'courses#endorse', as: :endorse
     end
   	resources :sections, only: [:create, :update, :destroy] do
-      resources :excersizes, only: [:create, :destroy]
+      resources :exercises, only: [:create, :destroy]
       collection do
         get 'buildvideo'
         get 'buildbody'
