@@ -3,13 +3,15 @@ class SectionsController < ApplicationController
 		@section = Section.new
 		@section.title = params[:title]
 		@section.course = Course.find(params[:course_id])
-		@section.save
-		@course = @section.course
-		@sections = Section.all
-		respond_to do |format|
-			format.html {}
-			format.js {}
+		if @section.save
+			@course = @section.course
+			@sections = Section.all
+			respond_to do |format|
+				format.html {}
+				format.js {}
+			end
 		end
+		
 	end
 
 	def update
